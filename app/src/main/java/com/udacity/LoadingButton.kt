@@ -14,6 +14,7 @@ import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.withStyledAttributes
 import kotlinx.android.synthetic.main.content_main.view.*
 import kotlin.math.min
 import kotlin.properties.Delegates
@@ -48,7 +49,7 @@ class LoadingButton @JvmOverloads constructor(
             ButtonState.Completed -> {
                 playAnimation = false
                 buttonText = "Download"
-                paint.color = context.getColor(R.color.colorPrimary)
+                paint.color = buttonColor
                 invalidate()
             }
         }
@@ -95,8 +96,15 @@ class LoadingButton @JvmOverloads constructor(
         typeface = Typeface.create("", Typeface.BOLD)
     }
 
+    private var buttonColor = 0
+    private var textColor = 0
+
     init {
         buttonText = "Download"
+        context.withStyledAttributes(attrs,R.styleable.LoadingButton){
+            buttonColor = getColor(R.styleable.LoadingButton_buttonColor,0)
+            textColor = getColor(R.styleable.LoadingButton_textColor,0)
+        }
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -106,17 +114,17 @@ class LoadingButton @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        paint.color = getColor(context, R.color.colorPrimary)
+        paint.color = buttonColor
         canvas!!.drawColor(paint.color)
         canvas.drawRect(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), paint)
-        paint.color = Color.WHITE
+        paint.color = textColor
         paint.textSize = 50.0f
         paint.textAlign = Paint.Align.CENTER
         canvas.drawText(buttonText, widthSize.toFloat() / 2, heightSize.toFloat() / 2, paint)
         if (playAnimation) {
             paint.color = getColor(context, R.color.colorPrimaryDark)
             canvas.drawRect(0f, 0f, width, measuredHeight.toFloat(), paint)
-            paint.color = Color.WHITE
+            paint.color = textColor
             canvas.drawText(buttonText, widthSize.toFloat() / 2, heightSize.toFloat() / 2, paint)
             paint.color = Color.YELLOW
             canvas.drawArc(
