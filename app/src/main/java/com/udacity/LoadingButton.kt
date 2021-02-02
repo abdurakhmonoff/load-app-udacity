@@ -9,11 +9,8 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
-import android.view.animation.LinearInterpolator
-import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.withStyledAttributes
 import kotlinx.android.synthetic.main.content_main.view.*
 import kotlin.math.min
@@ -97,12 +94,14 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private var buttonColor = 0
+    private var buttonColor2 = 0
     private var textColor = 0
 
     init {
         buttonText = "Download"
         context.withStyledAttributes(attrs,R.styleable.LoadingButton){
             buttonColor = getColor(R.styleable.LoadingButton_buttonColor,0)
+            buttonColor2 = getColor(R.styleable.LoadingButton_buttonColor2,0)
             textColor = getColor(R.styleable.LoadingButton_textColor,0)
         }
     }
@@ -122,7 +121,7 @@ class LoadingButton @JvmOverloads constructor(
         paint.textAlign = Paint.Align.CENTER
         canvas.drawText(buttonText, widthSize.toFloat() / 2, heightSize.toFloat() / 2, paint)
         if (playAnimation) {
-            paint.color = getColor(context, R.color.colorPrimaryDark)
+            paint.color = buttonColor2
             canvas.drawRect(0f, 0f, width, measuredHeight.toFloat(), paint)
             paint.color = textColor
             canvas.drawText(buttonText, widthSize.toFloat() / 2, heightSize.toFloat() / 2, paint)

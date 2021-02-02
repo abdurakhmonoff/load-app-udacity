@@ -22,17 +22,18 @@ class DetailActivity : AppCompatActivity() {
         file_name.text = downloadFileName
         if (downloadFileStatus == "Success") {
             status.setTextColor(getColor(R.color.colorPrimaryDark))
-        }else {
+        } else {
             status.setTextColor(getColor(R.color.red))
         }
         status.text = downloadFileStatus
 
         ok_btn.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        val notificationManager = ContextCompat.getSystemService(applicationContext,NotificationManager::class.java)
+        val notificationManager =
+            ContextCompat.getSystemService(applicationContext, NotificationManager::class.java)
         notificationManager?.cancelAllNotifications()
     }
 

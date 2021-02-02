@@ -25,42 +25,46 @@
         android:id="@+id/download_file_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toTopOf="@+id/custom_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:layout_marginHorizontal="20dp">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
         <RadioButton
             android:id="@+id/download_file_1"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/glide_image_loading_library"/>
+            android:text="@string/glide_image_loading_library"
+            android:textSize="20sp" />
+
         <RadioButton
             android:id="@+id/download_file_2"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/loadapp_current_repository"/>
+            android:text="@string/loadapp_current_repository"
+            android:textSize="20sp" />
+
         <RadioButton
             android:id="@+id/download_file_3"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/retrofit_type_face_http_client"/>
+            android:text="@string/retrofit_type_face_http_client"
+            android:textSize="20sp" />
     </RadioGroup>
 
     <com.udacity.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="60dp"
         android:layout_margin="20dp"
         app:buttonColor="@color/colorAccent"
-        app:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:buttonColor2="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:textColor="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
